@@ -17,11 +17,17 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
+@Entity
 @Table(name = "user")
+@Builder
 public class User {
 	
 	@Id
@@ -55,4 +61,5 @@ public class User {
 	private String active;
 //	@Temporal(TemporalType.TIMESTAMP)
 	private Date joiningdate;
+	
 }

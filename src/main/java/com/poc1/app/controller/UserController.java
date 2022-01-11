@@ -22,16 +22,35 @@ public class UserController {
 	@Autowired
 	private UserServiceImp userService;
 	
-	@GetMapping()
-	public ResponseEntity<?> getAllUsers(){
-		return ResponseEntity.ok(userService.getOnlyActiveUsers());
+	public UserController(UserServiceImp userService) {
+		super();
+		this.userService = userService;
+	}
+	
+	@GetMapping("/getusers")
+	public List<User> getAllUsers(){
+//		return ResponseEntity.ok(userService.getOnlyActiveUsers());
+		return userService.getAllUsers();
+	}
+
+
+	@GetMapping("/users")
+	public List<User> getOnlyActiveUsers(){
+//		return ResponseEntity.ok(userService.getOnlyActiveUsers());
+		return userService.getOnlyActiveUsers();
+	}
+	
+	@GetMapping("/user/{id}")
+	public User getUserById(@PathVariable Long id){
+//		return ResponseEntity.ok(userService.getOnlyActiveUsers());
+		return userService.getUserById(id);
 	}
 
 	
 	@PostMapping("/register")
 	public String addUser(@RequestBody User user) {
 		userService.saveUser(user);
-		return "Saved Successfully";
+		return (user.getId()+" inserted");
 	}
 	
 	@PutMapping("/edit/{id}")
@@ -44,14 +63,14 @@ public class UserController {
 	@DeleteMapping("/delete/{id}")
 	public String hardDeleteUser(@PathVariable Long id) {
 		userService.hardDeleteUser(id);
-		return "Deleted Successfully";
+		return "Id "+id+" Deleted Successfully";
 	}
 	
 	//soft-Delete
 	@DeleteMapping("/delete/soft/{id}")
 	public String softDeleteUser(@PathVariable Long id) {
 		userService.softDeleteUser("no", id);;
-		return "Soft Deleted Successfully";
+		return "Id "+id+" Soft Deleted Successfully";
 	}
 	
 	@GetMapping("/sort/name")

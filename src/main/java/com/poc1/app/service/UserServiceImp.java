@@ -1,8 +1,8 @@
 package com.poc1.app.service;
 
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,22 +14,27 @@ import com.poc1.app.repository.UserReposiotry;
 @Service
 public class UserServiceImp implements UserServices{
 	
-	@Autowired
+	
 	private UserReposiotry userRepo;
-
-	@Override
-	public List<User> getAllUsers() {
-		return userRepo.findAll();
+	
+	@Autowired
+	public void setUserRepo(UserReposiotry userRepo) {
+		this.userRepo = userRepo;
 	}
 
 	@Override
-	public Optional<User> getUserById(Long id) {
-		return userRepo.findById(id);
+	public List<User> getAllUsers() {
+		return (List<User>) userRepo.findAll();
+	}
+
+	@Override
+	public User getUserById(Long id) {
+		return userRepo.findById(id).get();
 	}
 	
 	@Override
 	public List<User> getOnlyActiveUsers() {
-		return userRepo.findAll().stream().filter(u -> u.getActive().equals("yes")).collect(Collectors.toList());
+		return ((List<User>) userRepo.findAll()).stream().filter(u -> u.getActive().equals("yes")).collect(Collectors.toList());
 	}
 
 	@Override
@@ -38,18 +43,15 @@ public class UserServiceImp implements UserServices{
 	}
 
 	@Override
-	public void hardDeleteUser(Long id) {
+	public Long hardDeleteUser(Long id) {
 		userRepo.deleteById(id);
+		return id;
 	}
 	
 	@Override
-	public void softDeleteUser(String status,Long id) {
+	public Long softDeleteUser(String status,Long id) {
 		userRepo.deleteStatus(status, id);
-	}
-
-	@Override
-	public Optional<User> findByUserName(String username) {
-		return null;
+		return id;
 	}
 
 	@Override
@@ -97,6 +99,11 @@ public class UserServiceImp implements UserServices{
 		return getAllUsers().stream().sorted(byPincode).collect(Collectors.toList());
 	}
 
+	public UserServiceImp(UserReposiotry userRepo) {
+		super();
+		this.userRepo = userRepo;
+	}
 
 
+	
 }

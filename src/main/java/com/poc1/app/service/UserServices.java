@@ -15,17 +15,15 @@ public interface UserServices {
 	
 	//Optional<User> findByUserNameAndPass(String username, String password);
 	
-	Optional<User> getUserById(Long id);
-	
-	Optional<User> findByUserName(String username);
+	User getUserById(Long id);
 	
 	//save
 	User saveUser(User u);
 	
 	//deletion
-	void hardDeleteUser(Long id);
+	Long hardDeleteUser(Long id);
 	
-	void softDeleteUser(String status,Long id);
+	Long softDeleteUser(String status,Long id);
 	
 	//Update
 	User updateUserId(User user,Long id);
