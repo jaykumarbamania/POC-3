@@ -5,7 +5,7 @@ import { EditformComponent } from './editform/editform.component';
 import { ShowusersComponent } from './showusers/showusers.component';
 
 const routes: Routes = [
-  {path:"", redirectTo:"users"},
+  {path:"", redirectTo:"users",pathMatch:"full"},
   {path:"adduser",component:AddUserComponent},
   {path:"users",component:ShowusersComponent},
   {path:"edit/:id",component:EditformComponent}

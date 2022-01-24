@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { User } from 'src/assets/model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,10 @@ export class UsersService {
 
   public getUserById(id:number){
     return this.http.get("http://localhost:8080/user/"+id)
+  }
+
+  public addEmployee(user:User){
+    return this.http.post("http://localhost:8080/register",user,{responseType:'text' as 'json'});
   }
 
 

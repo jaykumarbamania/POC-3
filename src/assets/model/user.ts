@@ -1,4 +1,5 @@
 export class User{
+    id:number;
     name:string;
     surname:string;
     email:string;
@@ -6,24 +7,23 @@ export class User{
     pincode:string;
     active:string;
     dob:Date;
-    joiningDate:Date;
+    joiningdate:Date;
     constructor(
         name:string,
         surname:string,
         email:string,
         phone:string,
         pincode:string,
-        active:string,
         dob:Date,
-        joiningDate:Date
+        joiningdate:Date
     ){
         this.name = name;
         this.surname = surname;
         this.email = email
         this.phone = phone;
         this.pincode = pincode;
-        this.active = active
+        this.active = "yes"
         this.dob = dob;
-        this.joiningDate = joiningDate;
+        this.joiningdate = joiningdate;
     }
 }

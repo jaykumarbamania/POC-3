@@ -20,6 +20,7 @@
         <th scope="col">Phone</th>
         <th scope="col">Pincode</th>
         <th scope="col">DOB</th>
+        <th scope="col">Joining Date</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
       </tr>
@@ -33,6 +34,7 @@
         <td>{{user.phone}}</td>
         <td>{{user.pincode}}</td>
         <td>{{user.dob | date}}</td>
+        <td>{{user.joiningdate | date}}</td>
         <td><a class="btn btn-warning"  [routerLink]="['/edit',user.id]" routerLinkActive="router-link-active">Edit</a></td>
         <td><button class="btn btn-danger"
          
