@@ -21,5 +21,7 @@ export class UsersService {
     return this.http.post("http://localhost:8080/register",user,{responseType:'text' as 'json'});
   }
 
-
+  public deleteUserById(id:number){
+    return this.http.delete("http://localhost:8080/delete/soft/"+id,{responseType:'text' as 'json'});
+  }
 }
