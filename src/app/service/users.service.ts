@@ -24,4 +24,28 @@ export class UsersService {
   public deleteUserById(id:number){
     return this.http.delete("http://localhost:8080/delete/soft/"+id,{responseType:'text' as 'json'});
   }
+
+  public updateUser(user:User,id:number){
+    return this.http.put("http://localhost:8080/edit/"+id,user,{responseType:'text' as 'json'})
+  }
+
+  public sortUsersByName(){
+    return this.http.get("http://localhost:8080/sort/name");
+  }
+
+  public sortUsersBySurname(){
+    return this.http.get("http://localhost:8080/sort/surname");
+  }
+
+  public sortUsersByDob(){
+    return this.http.get("http://localhost:8080/sort/dob");
+  }
+
+  public sortUsersByJoiningDate(){
+    return this.http.get("http://localhost:8080/sort/joiningdate");
+  }
+
+  public sortUsersByPincode(){
+    return this.http.get("http://localhost:8080/sort/pincode");
+  }
 }

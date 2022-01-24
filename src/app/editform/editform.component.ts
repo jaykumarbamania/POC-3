@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { User } from 'src/assets/model/user';
 import { UsersService } from '../service/users.service';
 
 @Component({
@@ -11,10 +12,11 @@ export class EditformComponent implements OnInit {
 
   constructor(
     private activatedRoute:ActivatedRoute,
-    private userService:UsersService
+    private userService:UsersService,
+    private router:Router
   ) { }
 
-  user: any;
+  user: User;
   id:any;
 
 
@@ -24,7 +26,16 @@ export class EditformComponent implements OnInit {
       this.id = str_id;
     })
     this.userService.getUserById(this.id)
-    .subscribe((data) => this.user = data)
+    .subscribe((data:User) => this.user = data)
+  }
+
+  updateUser(){
+    this.userService.updateUser(this.user,this.id)
+    .subscribe((data:User) => {
+      console.log(data)
+      this.user = data;
+    })
+    this.router.navigate(['/users']);
   }
 
 }

@@ -10,11 +10,13 @@
   color: white !important;
   background-color: #ff9900;
   border-radius: 5px;
+  border: 2px solid #ff9900;
 }
 
 .active {
-  color: white !important;
-  background-color: #ff9900;
+  color: #ff9900 !important;
+  background-color: white;
+  border: 2px solid #ff9900;
   border-radius: 5px;
 }
 
@@ -37,6 +39,8 @@
   position: relative;
   display: inline-block;
 }
+
+
 
 /* .dropdown-content {
     display: none;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/assets/model/user';
 import { UsersService } from '../service/users.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class ShowusersComponent implements OnInit {
 
   constructor(private userService:UsersService) { }
 
-  users:any;
+  users:User|any;
   msg:any;
 
   ngOnInit(): void {
@@ -19,15 +20,49 @@ export class ShowusersComponent implements OnInit {
 
   getAllUsers(){
     this.userService.getAllUsers()
-    .subscribe((data) => this.users = data)
+    .subscribe((data:User) => this.users = data)
   }
 
   deleteUser(id:number,index:number){
     this.userService.deleteUserById(id)
-    .subscribe((data) => {
+    .subscribe((data:User) => {
       this.msg = data;
       this.users.splice(index,1)
     })
   }
 
+  sortOnName(){
+    this.userService.sortUsersByName()
+    .subscribe((data:User) => {
+      this.users = data;
+    })
+  }
+
+  sortOnSurname(){
+    this.userService.sortUsersBySurname()
+    .subscribe((data:User) => {
+      this.users = data;
+    })
+  }
+
+  sortOnDob(){
+    this.userService.sortUsersByDob()
+    .subscribe((data:User) => {
+      this.users = data;
+    })
+  }
+
+  sortOnJoiningDate(){
+    this.userService.sortUsersByJoiningDate()
+    .subscribe((data:User) => {
+      this.users = data;
+    })
+  }
+
+  sortOnPincode(){
+    this.userService.sortUsersByPincode()
+    .subscribe((data:User) => {
+      this.users = data;
+    })
+  }
 }
