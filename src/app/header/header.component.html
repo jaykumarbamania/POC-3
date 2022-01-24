@@ -1,0 +1,21 @@
+<nav class=" container navbar navbar-expand-lg navbar-light  fixed-top">
+    <div>
+        <a class="navbar-brand ml-5 mr-5 ">POC 3 </a>
+        <button class="navbar-toggler" data-target="#my-nav"
+            data-toggle="collapse" aria-controls="my-nav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div id="my-nav" class="collapse navbar-collapse d-flex justify-content-between ">
+        
+            
+      
+            <ul class="navbar-nav mr-auto ">
+            <li class="nav-item"><a class="nav-link mr-4" [routerLink]="['/users']" routerLinkActive="active" >Users
+            </a></li>
+            <li class="nav-item"><a class="nav-link " [routerLink]="['/adduser']" routerLinkActive="active" >Add User</a></li>
+
+        </ul>
+    </div>
+</nav>
