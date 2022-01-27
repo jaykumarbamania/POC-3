@@ -8,10 +8,23 @@
 				<div class="card text-yellow" style="border-radius: 25px;">
 					<div class="card-body p-md-5 h-100" >
 
-
+            
 						<div class="row justify-content-center" >
+              
               <div *ngIf="msg" class="mt-5">
                 <h1 class="alert alert-success text-success text-center">{{msg}}</h1>
+            </div>
+            <div class="mt-5 text-center">
+              <select name="searchOption" [(ngModel)]="searchOption" (change)="onSearch()">
+                <option value="null"  selected>Search Options</option>
+                <option [ngValue]="'name'">By Name</option>
+                <option [ngValue]="'surname'">By Surname</option>
+                <option [ngValue]="'pincode'">By Pincode</option>
+                <option [ngValue]="'dob'">By Dob</option>
+                <option [ngValue]="'joiningdate'">By Joiningdate</option>
+              </select>
+              <input [type]="inputType" [(ngModel)]= "searchText" (change) = "onSearchText()" />
+              <button class="btn btn-outline-warning">Search</button>
             </div>
 <table class="table table-hover m-5">
     <thead>

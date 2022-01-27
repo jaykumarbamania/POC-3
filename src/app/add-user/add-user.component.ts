@@ -19,9 +19,10 @@ export class AddUserComponent implements OnInit {
 
   public addUser(){
     console.log(this.user);
-    let response = this.userService.addEmployee(this.user);
+    let response = this.userService.addUser(this.user);
 
     response.subscribe((data) => this.msg = data)
   }
 
 }
+

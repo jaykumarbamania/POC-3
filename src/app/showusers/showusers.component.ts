@@ -1,3 +1,4 @@
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/assets/model/user';
 import { UsersService } from '../service/users.service';
@@ -13,7 +14,10 @@ export class ShowusersComponent implements OnInit {
 
   users:User|any;
   msg:any;
-
+  searchOption:string = "null";
+  searchText:any = "";
+  endPointUrl:any;
+  inputType:string = "text";
   ngOnInit(): void {
     this.getAllUsers();
   }
@@ -61,6 +65,17 @@ export class ShowusersComponent implements OnInit {
 
   sortOnPincode(){
     this.userService.sortUsersByPincode()
+    .subscribe((data:User) => {
+      this.users = data;
+    })
+  }
+
+  onSearch(){
+    this.searchText="";
+  }
+  onSearchText(){
+    this.endPointUrl  = this.searchOption+"/"+this.searchText;
+    this.userService.searchUserBy(this.endPointUrl)
     .subscribe((data:User) => {
       this.users = data;
     })

@@ -17,7 +17,7 @@ export class UsersService {
     return this.http.get("http://localhost:8080/user/"+id)
   }
 
-  public addEmployee(user:User){
+  public addUser(user:User){
     return this.http.post("http://localhost:8080/register",user,{responseType:'text' as 'json'});
   }
 
@@ -47,5 +47,9 @@ export class UsersService {
 
   public sortUsersByPincode(){
     return this.http.get("http://localhost:8080/sort/pincode");
+  }
+
+  public searchUserBy(endPoints:string){
+    return this.http.get("http://localhost:8080/search/"+endPoints);
   }
 }

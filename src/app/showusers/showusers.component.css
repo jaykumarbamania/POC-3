@@ -1,3 +1,6 @@
-th{
+th {
   color: #ff9900;
+}
+input,select {
+  border: 2px solid #ff9900;
 }
