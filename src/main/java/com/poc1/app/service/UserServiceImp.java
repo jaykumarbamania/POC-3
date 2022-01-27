@@ -2,6 +2,7 @@ package com.poc1.app.service;
 
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -72,36 +73,61 @@ public class UserServiceImp implements UserServices{
 	@Override
 	public List<User> sortUsersByName(){
 		Comparator<User> byName = Comparator.comparing(User::getName);
-		return getAllUsers().stream().sorted(byName).collect(Collectors.toList());
+		return getOnlyActiveUsers().stream().sorted(byName).collect(Collectors.toList());
 	}
 	
 	@Override
 	public List<User> sortUsersBySurname(){
 		Comparator<User> bySurname = Comparator.comparing(User::getSurname);
-		return getAllUsers().stream().sorted(bySurname).collect(Collectors.toList());
+		return getOnlyActiveUsers().stream().sorted(bySurname).collect(Collectors.toList());
 	}
 
 	@Override
 	public List<User> sortUsersByDob() {
 		Comparator<User> byDob = Comparator.comparing(User::getDob);
-		return getAllUsers().stream().sorted(byDob).collect(Collectors.toList());
+		return getOnlyActiveUsers().stream().sorted(byDob).collect(Collectors.toList());
 	}
 
 	@Override
 	public List<User> sortUsersByJoiningDate() {
 		Comparator<User> byJoiningDate = Comparator.comparing(User::getJoiningdate);
-		return getAllUsers().stream().sorted(byJoiningDate).collect(Collectors.toList());
+		return getOnlyActiveUsers().stream().sorted(byJoiningDate).collect(Collectors.toList());
 	}
 
 	@Override
 	public List<User> sortUsersByPincode() {
 		Comparator<User> byPincode = Comparator.comparing(User::getPincode);
-		return getAllUsers().stream().sorted(byPincode).collect(Collectors.toList());
+		return getOnlyActiveUsers().stream().sorted(byPincode).collect(Collectors.toList());
 	}
 
 	public UserServiceImp(UserReposiotry userRepo) {
 		super();
 		this.userRepo = userRepo;
+	}
+
+	@Override
+	public List<User> searchByName(String name) {
+		return this.userRepo.findByName(name);
+	}
+
+	@Override
+	public List<User> searchBySurname(String surname) {
+		return this.userRepo.findBySurname(surname);
+	}
+
+	@Override
+	public List<User> searchByDob(String dob) {
+		return this.userRepo.findByDob(dob);
+	}
+
+	@Override
+	public List<User> searchByPincode(String pincode) {
+		return this.userRepo.findByPincode(pincode);
+	}
+
+	@Override
+	public List<User> searchByJoiningDate(String joiningdate) {
+		return this.userRepo.findByJoiningdate(joiningdate);
 	}
 
 

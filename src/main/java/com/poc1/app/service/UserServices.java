@@ -1,5 +1,6 @@
 package com.poc1.app.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +40,17 @@ public interface UserServices {
 	List<User> sortUsersByJoiningDate();
 
 	List<User> sortUsersByPincode();
+	
+	//searching
+	List<User> searchByName(String name);
+	
+	List<User> searchBySurname(String surname);
+	
+	List<User> searchByDob(String Dob );
+	
+	List<User> searchByPincode(String pincode );
+	
+	List<User> searchByJoiningDate(String joiningdate );
 	
 
 }

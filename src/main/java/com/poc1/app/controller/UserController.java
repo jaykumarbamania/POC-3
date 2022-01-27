@@ -1,10 +1,12 @@
 package com.poc1.app.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.poc1.app.model.User;
 import com.poc1.app.service.UserServiceImp;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class UserController {
 	
@@ -50,7 +53,7 @@ public class UserController {
 	@PostMapping("/register")
 	public String addUser(@RequestBody User user) {
 		userService.saveUser(user);
-		return (user.getId()+" inserted");
+		return (user.getName()+" "+user.getSurname()+" added successfully");
 	}
 	
 	@PutMapping("/edit/{id}")
@@ -69,7 +72,7 @@ public class UserController {
 	//soft-Delete
 	@DeleteMapping("/delete/soft/{id}")
 	public String softDeleteUser(@PathVariable Long id) {
-		userService.softDeleteUser("no", id);;
+		userService.softDeleteUser("no", id);
 		return "Id "+id+" Soft Deleted Successfully";
 	}
 	
@@ -98,5 +101,29 @@ public class UserController {
 		return userService.sortUsersByPincode();
 	}
 	
+	@GetMapping("search/name/{name}")
+	public List<User> searchUserByName(@PathVariable String name){
+		return userService.searchByName(name);
+	}
+	
+	@GetMapping("search/surname/{surname}")
+	public List<User> searchUserBySurname(@PathVariable String surname){
+		return userService.searchBySurname(surname);
+	}
+	
+	@GetMapping("search/dob/{dob}")
+	public List<User> searchUserByDob(@PathVariable String dob){
+		return userService.searchByDob(dob);
+	}
+	
+	@GetMapping("search/pincode/{pincode}")
+	public List<User> searchUserByPincode(@PathVariable String pincode){
+		return userService.searchByPincode(pincode);
+	}
+	
+	@GetMapping("search/joiningdate/{joiningdate}")
+	public List<User> searchUserByJoiningDate(@PathVariable String joiningdate){
+		return userService.searchByJoiningDate(joiningdate);
+	}
 	
 }
